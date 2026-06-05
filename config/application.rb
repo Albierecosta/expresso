@@ -35,7 +35,7 @@ module Expresso
     #
     config.time_zone = "Brasilia"
     config.i18n.default_locale = :"pt-BR"
-    config.i18n.available_locales = [:"pt-BR"]
+    config.i18n.available_locales = [ :"pt-BR" ]
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.{rb,yml}")]
 
     # Don't generate system test files.
