@@ -1,0 +1,28 @@
+<div class="card">
+  <%= render "step_header", step: 2, title: t("public_flow.photo.title") %>
+
+  <p class="text-sm text-gray-500 text-center mb-4"><%= t("public_flow.photo.help") %></p>
+
+  <%= form_with model: @delivery,
+        url: public_delivery_photo_path(token: @freight.public_token),
+        method: :post, multipart: true,
+        data: { controller: "photo-preview" },
+        class: "space-y-4" do |f| %>
+    <%= render "shared/form_errors", record: @delivery %>
+
+    <img data-photo-preview-target="image"
+         class="hidden w-full max-h-72 object-cover rounded-md border border-gray-200">
+
+    <%= f.file_field :photo,
+          accept: "image/*",
+          capture: "environment",
+          required: true,
+          data: { "photo-preview-target": "input", action: "change->photo-preview#preview" },
+          class: "block w-full text-sm text-gray-500
+                  file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0
+                  file:text-sm file:font-medium file:bg-brand-500 file:text-white
+                  hover:file:bg-brand-600" %>
+
+    <%= f.submit t("public_flow.photo.submit"), class: "btn-primary w-full justify-center" %>
+  <% end %>
+</div>

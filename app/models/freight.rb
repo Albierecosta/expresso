@@ -50,6 +50,8 @@ class Freight < ApplicationRecord
   belongs_to :recipient
   belongs_to :driver, class_name: "User", optional: true
 
+  has_one :delivery, dependent: :destroy
+
   validates :amount, presence: true, numericality: { greater_than: 0 }
 
   # Pre-fill the freight's own (per-delivery) address from the recipient when

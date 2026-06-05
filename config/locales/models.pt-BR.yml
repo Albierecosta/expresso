@@ -19,6 +19,9 @@ pt-BR:
       freight:
         one: "Frete"
         other: "Fretes"
+      delivery:
+        one: "Entrega"
+        other: "Entregas"
     attributes:
       user:
         name: "Nome"
@@ -63,6 +66,11 @@ pt-BR:
         notes: "Observações"
         status: "Status"
         created_at: "Criado em"
+      delivery:
+        recipient_name: "Nome do recebedor"
+        photo: "Foto do recebimento"
+        signature: "Assinatura"
+        delivered_at: "Data e hora"
     errors:
       models:
         address:

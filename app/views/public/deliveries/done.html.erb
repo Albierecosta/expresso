@@ -1,0 +1,29 @@
+<div class="card text-center">
+  <div class="mx-auto w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+         stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-emerald-600">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  </div>
+
+  <h1 class="text-xl font-bold mb-2"><%= t("public_flow.done.title") %></h1>
+
+  <p class="text-sm text-gray-600 mb-6">
+    <%= t("public_flow.done.thanks", name: @delivery.recipient_name) %>
+  </p>
+
+  <dl class="text-left text-sm space-y-3 border-t border-gray-100 pt-4">
+    <div>
+      <dt class="text-xs uppercase tracking-wider text-gray-500"><%= t("public_flow.done.timestamp_label") %></dt>
+      <dd class="mt-1"><%= l(@delivery.delivered_at, format: :long) %></dd>
+    </div>
+    <div>
+      <dt class="text-xs uppercase tracking-wider text-gray-500"><%= t("public_flow.done.code_label") %></dt>
+      <dd class="mt-1 font-mono"><%= @freight.code %></dd>
+    </div>
+  </dl>
+
+  <button type="button" onclick="window.close()" class="btn-primary w-full mt-6 justify-center">
+    <%= t("public_flow.done.close") %>
+  </button>
+</div>

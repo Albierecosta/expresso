@@ -1,0 +1,32 @@
+<div class="card">
+  <%= render "step_header", step: 3, title: t("public_flow.signature.title") %>
+
+  <p class="text-sm text-gray-500 text-center mb-4"><%= t("public_flow.signature.help") %></p>
+
+  <%= form_with model: @delivery,
+        url: public_delivery_signature_path(token: @freight.public_token),
+        method: :post,
+        data: { controller: "signature", "signature-missing-message": t("public_flow.signature.missing") },
+        class: "space-y-4" do |f| %>
+    <%= render "shared/form_errors", record: @delivery %>
+
+    <%= f.text_field :recipient_name,
+          required: true,
+          placeholder: t("public_flow.signature.recipient_name_label"),
+          class: "form-field" %>
+
+    <div class="relative">
+      <canvas data-signature-target="canvas"
+              class="w-full h-48 bg-white border border-gray-300 rounded-md touch-none"></canvas>
+      <button type="button"
+              data-action="signature#clear"
+              class="absolute top-2 right-2 text-xs text-gray-400 hover:text-gray-600">
+        <%= t("public_flow.signature.clear") %>
+      </button>
+    </div>
+
+    <%= f.hidden_field :signature_svg, data: { "signature-target": "input" } %>
+
+    <%= f.submit t("public_flow.signature.confirm"), class: "btn-primary w-full justify-center" %>
+  <% end %>
+</div>

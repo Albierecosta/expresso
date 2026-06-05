@@ -1,13 +1,42 @@
-<div class="card text-center">
-  <h1 class="text-xl font-semibold mb-2"><%= t("app.name") %></h1>
-  <p class="text-sm text-gray-500 mb-6">Fluxo de recebimento</p>
+<div class="card">
+  <%= render "step_header", step: 1, title: t("public_flow.data.title") %>
 
-  <div class="text-left space-y-2 mb-6">
-    <div class="text-xs uppercase tracking-wider text-gray-500">Código do Frete</div>
-    <div class="font-mono text-lg"><%= @freight.code %></div>
-  </div>
+  <dl class="text-sm space-y-3">
+    <div>
+      <dt class="text-xs uppercase tracking-wider text-gray-500"><%= Freight.human_attribute_name(:code) %></dt>
+      <dd class="font-mono mt-1"><%= @freight.code %></dd>
+    </div>
+    <div>
+      <dt class="text-xs uppercase tracking-wider text-gray-500"><%= Freight.human_attribute_name(:client) %></dt>
+      <dd class="mt-1"><%= @freight.client.name %></dd>
+    </div>
+    <div>
+      <dt class="text-xs uppercase tracking-wider text-gray-500"><%= Freight.human_attribute_name(:recipient) %></dt>
+      <dd class="mt-1"><%= @freight.recipient.name %></dd>
+    </div>
+    <div>
+      <dt class="text-xs uppercase tracking-wider text-gray-500"><%= Address.model_name.human %></dt>
+      <dd class="mt-1"><%= @freight.address %></dd>
+    </div>
+    <div>
+      <dt class="text-xs uppercase tracking-wider text-gray-500"><%= Freight.human_attribute_name(:amount) %></dt>
+      <dd class="mt-1 font-medium"><%= brl(@freight.amount) %></dd>
+    </div>
+    <% if @freight.order_number.present? %>
+      <div>
+        <dt class="text-xs uppercase tracking-wider text-gray-500"><%= Freight.human_attribute_name(:order_number) %></dt>
+        <dd class="mt-1"><%= @freight.order_number %></dd>
+      </div>
+    <% end %>
+    <% if @freight.notes.present? %>
+      <div>
+        <dt class="text-xs uppercase tracking-wider text-gray-500"><%= Freight.human_attribute_name(:notes) %></dt>
+        <dd class="mt-1 whitespace-pre-line"><%= @freight.notes %></dd>
+      </div>
+    <% end %>
+  </dl>
 
-  <p class="text-sm text-gray-500">
-    A confirmação de recebimento ficará disponível em breve.
-  </p>
+  <%= link_to t("public_flow.data.confirm_button"),
+        public_delivery_photo_path(token: @freight.public_token),
+        class: "btn-primary w-full mt-6 justify-center" %>
 </div>

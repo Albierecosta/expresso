@@ -66,3 +66,32 @@ pt-BR:
       delivered: "Entregues"
       cancelled: "Cancelados"
     see_all: "Ver todos"
+
+  public_flow:
+    step: "Passo %{n} de 4"
+    data:
+      title: "Dados da Entrega"
+      confirm_button: "Confirmar Recebimento"
+    photo:
+      title: "Foto do Recebimento"
+      help: "Tire uma foto sua ou da mercadoria recebida"
+      take_photo: "Tirar Foto"
+      use_gallery: "Usar da Galeria"
+      submit: "Continuar"
+    signature:
+      title: "Assinatura"
+      help: "Assine abaixo confirmando o recebimento"
+      recipient_name_label: "Quem está recebendo?"
+      clear: "Limpar"
+      confirm: "Confirmar"
+      missing: "Por favor, assine antes de confirmar."
+    done:
+      title: "Recebimento Confirmado!"
+      thanks: "Obrigado, %{name}. O recebimento foi registrado com sucesso."
+      timestamp_label: "Data e hora"
+      code_label: "Código do Frete"
+      close: "Fechar"
+    cancelled:
+      title: "Frete cancelado"
+      body: "Este frete foi cancelado e não pode mais ser confirmado."
+    not_found: "Frete não encontrado."
