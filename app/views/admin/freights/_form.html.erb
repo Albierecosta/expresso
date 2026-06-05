@@ -1,0 +1,43 @@
+<%= simple_form_for [ :admin, freight ], html: { class: "card space-y-6" } do |f| %>
+  <%= render "shared/form_errors", record: freight %>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <%= f.association :client,
+          collection: Client.order(:name),
+          include_blank: false,
+          input_html: { class: "form-field" } %>
+
+    <%= f.association :recipient,
+          collection: Recipient.includes(:client).order(:name),
+          label_method: ->(r) { "#{r.name} (#{r.client.name})" },
+          include_blank: false,
+          input_html: { class: "form-field" } %>
+  </div>
+
+  <fieldset class="border-t border-gray-100 pt-4">
+    <legend class="text-xs uppercase tracking-wider text-gray-500 mb-3">
+      <%= Address.model_name.human %>
+    </legend>
+    <%= f.simple_fields_for :address do |a| %>
+      <%= render "addresses/fields", f: a %>
+    <% end %>
+  </fieldset>
+
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <%= f.input :amount,
+          as: :decimal,
+          input_html: { class: "form-field", step: "0.01", min: 0, placeholder: "0,00" } %>
+    <%= f.input :order_number, input_html: { class: "form-field" } %>
+    <%= f.association :driver,
+          collection: User.with_role(:driver).order(:name),
+          include_blank: t("simple_form.no"),
+          input_html: { class: "form-field" } %>
+  </div>
+
+  <%= f.input :notes, as: :text, input_html: { rows: 3, class: "form-field" } %>
+
+  <div class="flex items-center justify-end gap-2 pt-4 border-t border-gray-100">
+    <%= link_to t("actions.cancel"), admin_freights_path, class: "btn-secondary" %>
+    <%= f.submit t("actions.save"), class: "btn-primary" %>
+  </div>
+<% end %>

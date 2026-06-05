@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_06_05_175448) do
+ActiveRecord::Schema[8.0].define(version: 2026_06_05_180729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -53,6 +53,30 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_05_175448) do
     t.index ["cnpj"], name: "index_companies_on_cnpj", unique: true
   end
 
+  create_table "freights", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "recipient_id", null: false
+    t.bigint "driver_id"
+    t.string "code", null: false
+    t.string "public_token", null: false
+    t.string "status", default: "pending", null: false
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.string "order_number"
+    t.text "notes"
+    t.bigint "created_by_id"
+    t.bigint "updated_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_freights_on_client_id"
+    t.index ["code"], name: "index_freights_on_code", unique: true
+    t.index ["created_by_id"], name: "index_freights_on_created_by_id"
+    t.index ["driver_id"], name: "index_freights_on_driver_id"
+    t.index ["public_token"], name: "index_freights_on_public_token", unique: true
+    t.index ["recipient_id"], name: "index_freights_on_recipient_id"
+    t.index ["status"], name: "index_freights_on_status"
+    t.index ["updated_by_id"], name: "index_freights_on_updated_by_id"
+  end
+
   create_table "recipients", force: :cascade do |t|
     t.bigint "client_id", null: false
     t.string "name", null: false
@@ -84,6 +108,11 @@ ActiveRecord::Schema[8.0].define(version: 2026_06_05_175448) do
 
   add_foreign_key "clients", "users", column: "created_by_id"
   add_foreign_key "clients", "users", column: "updated_by_id"
+  add_foreign_key "freights", "clients"
+  add_foreign_key "freights", "recipients"
+  add_foreign_key "freights", "users", column: "created_by_id"
+  add_foreign_key "freights", "users", column: "driver_id"
+  add_foreign_key "freights", "users", column: "updated_by_id"
   add_foreign_key "recipients", "clients"
   add_foreign_key "recipients", "users", column: "created_by_id"
   add_foreign_key "recipients", "users", column: "updated_by_id"

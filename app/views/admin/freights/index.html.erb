@@ -1,0 +1,32 @@
+<%= render "shared/page_header", title: Freight.model_name.human(count: 2) do %>
+  <%= link_to t("actions.new"), new_admin_freight_path, class: "btn-primary" %>
+<% end %>
+
+<% if @freights.any? %>
+  <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <table class="w-full">
+      <thead class="bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-500">
+        <tr>
+          <th class="px-4 py-3"><%= Freight.human_attribute_name(:code) %></th>
+          <th class="px-4 py-3"><%= Freight.human_attribute_name(:recipient) %></th>
+          <th class="px-4 py-3"><%= Freight.human_attribute_name(:client) %></th>
+          <th class="px-4 py-3 text-right"><%= Freight.human_attribute_name(:amount) %></th>
+          <th class="px-4 py-3"><%= Freight.human_attribute_name(:status) %></th>
+          <th class="px-4 py-3"><%= Freight.human_attribute_name(:created_at) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "row", collection: @freights, as: :freight %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4">
+    <%== pagy_nav(@pagy) %>
+  </div>
+<% else %>
+  <%= render "shared/empty_state",
+        title: t("freights.empty_state_title"),
+        subtitle: t("freights.empty_state_subtitle"),
+        action: link_to(t("actions.new"), new_admin_freight_path, class: "btn-primary") %>
+<% end %>

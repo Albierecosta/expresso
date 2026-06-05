@@ -3,19 +3,33 @@
       subtitle: t("app.tagline") %>
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-  <% [
-       { label: "Pendentes",   value: 0, tone: "amber" },
-       { label: "Em trânsito", value: 0, tone: "blue" },
-       { label: "Entregues",   value: 0, tone: "emerald" },
-       { label: "Cancelados",  value: 0, tone: "red" }
-     ].each do |stat| %>
+  <% Freight.status.values.each do |value| %>
     <div class="card">
-      <div class="text-xs uppercase tracking-wider text-gray-500"><%= stat[:label] %></div>
-      <div class="mt-2 text-3xl font-semibold text-gray-900"><%= stat[:value] %></div>
+      <div class="text-xs uppercase tracking-wider text-gray-500">
+        <%= t("dashboard.stats.#{value}") %>
+      </div>
+      <div class="mt-2 text-3xl font-semibold text-gray-900">
+        <%= @counts[value.to_s].to_i %>
+      </div>
     </div>
   <% end %>
 </div>
 
-<%= render "shared/empty_state",
-      title: "Nenhum frete ainda",
-      subtitle: "Cadastre o primeiro frete para começar a usar o sistema." %>
+<% if @today_freights.any? %>
+  <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+      <h2 class="font-semibold text-gray-900"><%= t("freights.today_title") %></h2>
+      <%= link_to t("dashboard.see_all"), admin_freights_path, class: "btn-secondary" %>
+    </div>
+    <table class="w-full">
+      <tbody>
+        <%= render partial: "admin/freights/row", collection: @today_freights, as: :freight %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <%= render "shared/empty_state",
+        title: t("freights.empty_state_title"),
+        subtitle: t("freights.empty_state_subtitle"),
+        action: link_to(t("actions.new"), new_admin_freight_path, class: "btn-primary") %>
+<% end %>

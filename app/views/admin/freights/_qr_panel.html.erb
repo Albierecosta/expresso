@@ -1,0 +1,40 @@
+<%# QR panel — center column of the freight show, matches the mockup. %>
+<div class="card text-center">
+  <h2 class="text-sm font-medium text-gray-500 mb-4"><%= t("freights.qr_panel_title") %></h2>
+
+  <%= qr_code_svg(public_delivery_url(freight.public_token), module_size: 7) %>
+
+  <div class="mt-6">
+    <div class="text-xs uppercase tracking-wider text-gray-500"><%= t("freights.qr_panel_code_label") %></div>
+    <div class="mt-2 inline-block bg-brand-50 text-brand-700 font-mono px-4 py-2 rounded-md">
+      <%= freight.code %>
+    </div>
+  </div>
+
+  <p class="mt-4 text-xs text-gray-500"><%= t("freights.qr_panel_help") %></p>
+
+  <div class="mt-6 flex items-center justify-center gap-2">
+    <%= link_to print_admin_freight_path(freight),
+          target: "_blank", rel: "noopener",
+          class: "btn-secondary" do %>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+        <path d="M6 9V3h12v6M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/>
+      </svg>
+      <%= t("freights.print_button") %>
+    <% end %>
+
+    <button type="button"
+            data-controller="share"
+            data-action="share#trigger"
+            data-share-url-value="<%= public_delivery_url(freight.public_token) %>"
+            data-share-title-value="<%= freight.code %>"
+            class="btn-secondary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+        <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/>
+      </svg>
+      <%= t("freights.share_button") %>
+    </button>
+  </div>
+</div>

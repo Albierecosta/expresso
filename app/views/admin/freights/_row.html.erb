@@ -1,0 +1,11 @@
+<%# Table row for a Freight — used in the index and on the dashboard. %>
+<tr class="border-b border-gray-100 hover:bg-gray-50">
+  <td class="px-4 py-3 font-mono text-sm text-gray-700">
+    <%= link_to freight.code, admin_freight_path(freight), class: "hover:text-brand-600" %>
+  </td>
+  <td class="px-4 py-3 text-sm"><%= freight.recipient.name %></td>
+  <td class="px-4 py-3 text-sm text-gray-500"><%= freight.client.name %></td>
+  <td class="px-4 py-3 text-sm text-right"><%= brl(freight.amount) %></td>
+  <td class="px-4 py-3"><%= render "shared/status_badge", value: freight.status %></td>
+  <td class="px-4 py-3 text-sm text-gray-500"><%= l(freight.created_at.to_date, format: :short) %></td>
+</tr>

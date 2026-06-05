@@ -16,6 +16,9 @@ pt-BR:
       address:
         one: "Endereço"
         other: "Endereços"
+      freight:
+        one: "Frete"
+        other: "Fretes"
     attributes:
       user:
         name: "Nome"
@@ -50,6 +53,16 @@ pt-BR:
         city: "Cidade"
         state: "UF"
         zipcode: "CEP"
+      freight:
+        client: "Cliente"
+        recipient: "Destinatário"
+        driver: "Motorista"
+        code: "Código do Frete"
+        amount: "Valor do Frete"
+        order_number: "Nº do Pedido"
+        notes: "Observações"
+        status: "Status"
+        created_at: "Criado em"
     errors:
       models:
         address:

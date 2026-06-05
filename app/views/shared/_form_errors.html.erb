@@ -1,0 +1,13 @@
+<%# Renders a summary of validation errors at the top of a form. %>
+<% if record.errors.any? %>
+  <div class="border border-red-300 bg-red-50 text-red-800 rounded-md px-4 py-3">
+    <div class="font-medium">
+      <%= t("simple_form.error_notification.default_message") %>
+    </div>
+    <ul class="mt-2 list-disc list-inside text-sm">
+      <% record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

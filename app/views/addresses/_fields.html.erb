@@ -1,0 +1,10 @@
+<%# Nested address fields — used by any form on a model with HasAddress. %>
+<div class="grid grid-cols-1 sm:grid-cols-6 gap-4">
+  <%= f.input :zipcode, wrapper_html: { class: "sm:col-span-2" }, input_html: { class: "form-field" } %>
+  <%= f.input :street,  wrapper_html: { class: "sm:col-span-4" }, input_html: { class: "form-field" } %>
+  <%= f.input :number,  wrapper_html: { class: "sm:col-span-2" }, input_html: { class: "form-field" } %>
+  <%= f.input :complement, wrapper_html: { class: "sm:col-span-4" }, input_html: { class: "form-field" } %>
+  <%= f.input :neighborhood, wrapper_html: { class: "sm:col-span-3" }, input_html: { class: "form-field" } %>
+  <%= f.input :city,    wrapper_html: { class: "sm:col-span-2" }, input_html: { class: "form-field" } %>
+  <%= f.input :state,   wrapper_html: { class: "sm:col-span-1" }, input_html: { class: "form-field", maxlength: 2 } %>
+</div>

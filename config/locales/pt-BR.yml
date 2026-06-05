@@ -40,3 +40,29 @@ pt-BR:
         admin: "Administrador"
         operator: "Operador"
         driver: "Motorista"
+    freight:
+      status:
+        pending: "Pendente"
+        in_transit: "Em trânsito"
+        delivered: "Entregue"
+        cancelled: "Cancelado"
+
+  freights:
+    new_title: "Novo Frete"
+    edit_title: "Editar Frete"
+    today_title: "Fretes de Hoje"
+    qr_panel_title: "QR Code do Frete"
+    qr_panel_code_label: "Código do Frete"
+    qr_panel_help: "Escaneie o QR Code para confirmar o recebimento"
+    print_button: "Imprimir"
+    share_button: "Compartilhar"
+    empty_state_title: "Nenhum frete ainda"
+    empty_state_subtitle: "Cadastre o primeiro frete para começar a usar o sistema."
+
+  dashboard:
+    stats:
+      pending: "Pendentes"
+      in_transit: "Em trânsito"
+      delivered: "Entregues"
+      cancelled: "Cancelados"
+    see_all: "Ver todos"
