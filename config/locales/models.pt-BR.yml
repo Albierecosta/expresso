@@ -4,6 +4,18 @@ pt-BR:
       user:
         one: "Usuário"
         other: "Usuários"
+      company:
+        one: "Empresa"
+        other: "Empresas"
+      client:
+        one: "Cliente"
+        other: "Clientes"
+      recipient:
+        one: "Destinatário"
+        other: "Destinatários"
+      address:
+        one: "Endereço"
+        other: "Endereços"
     attributes:
       user:
         name: "Nome"
@@ -12,3 +24,35 @@ pt-BR:
         password_confirmation: "Confirmação de senha"
         current_password: "Senha atual"
         role: "Perfil"
+      company:
+        name: "Nome fantasia"
+        legal_name: "Razão social"
+        cnpj: "CNPJ"
+        email: "E-mail"
+        phone: "Telefone"
+        logo: "Logo"
+      client:
+        name: "Nome / Razão social"
+        document: "CNPJ / CPF"
+        email: "E-mail"
+        phone: "Telefone"
+      recipient:
+        client: "Cliente"
+        name: "Nome do destinatário"
+        document: "CPF"
+        email: "E-mail"
+        phone: "Telefone"
+      address:
+        street: "Rua / Logradouro"
+        number: "Número"
+        complement: "Complemento"
+        neighborhood: "Bairro"
+        city: "Cidade"
+        state: "UF"
+        zipcode: "CEP"
+    errors:
+      models:
+        address:
+          attributes:
+            zipcode:
+              invalid: "deve estar no formato 00000-000"

@@ -92,7 +92,7 @@ Delivery (comprovação de entrega)
 
 ### Concerns de model (planejados)
 
-- `Addressable` — adiciona `has_one :address, as: :addressable, dependent: :destroy` + `accepts_nested_attributes_for`.
+- `HasAddress` — adiciona `has_one :address, as: :addressable, dependent: :destroy` + `accepts_nested_attributes_for`. (Renomeado de `Addressable` para evitar shadowing pela gem homônima.)
 - `Codeable` — gera código único sequencial com prefixo (`FRETE-YYYY-MM-NNNN`). Usado em `Freight`.
 - `Tokenable` — gera token público URL-safe para links de QR Code (`freight.public_token`).
 - `Auditable` — adiciona `created_by`/`updated_by` automaticamente via `Current.user`.

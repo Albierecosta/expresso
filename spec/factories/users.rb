@@ -20,7 +20,7 @@
 #
 FactoryBot.define do
   factory :user do
-    name { Faker::Name.name }
+    sequence(:name)  { |n| "Usuário #{n}" }
     sequence(:email) { |n| "user#{n}@expresso.test" }
     password { "password123" }
     role { :operator }
