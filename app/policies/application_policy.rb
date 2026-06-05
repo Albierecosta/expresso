@@ -8,46 +8,27 @@ class ApplicationPolicy
     @record = record
   end
 
-  def index?
-    false
-  end
+  def index?    = staff?
+  def show?     = staff?
+  def create?   = staff?
+  def new?      = create?
+  def update?   = staff?
+  def edit?     = update?
+  def destroy?  = admin?
 
-  def show?
-    false
-  end
+  private
 
-  def create?
-    false
-  end
-
-  def new?
-    create?
-  end
-
-  def update?
-    false
-  end
-
-  def edit?
-    update?
-  end
-
-  def destroy?
-    false
-  end
+  def admin?  = user&.admin?
+  def staff?  = user&.admin? || user&.operator?
 
   class Scope
+    attr_reader :user, :scope
+
     def initialize(user, scope)
       @user = user
       @scope = scope
     end
 
-    def resolve
-      raise NoMethodError, "You must define #resolve in #{self.class}"
-    end
-
-    private
-
-    attr_reader :user, :scope
+    def resolve = scope.all
   end
 end

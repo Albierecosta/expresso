@@ -1,0 +1,46 @@
+<%# Sidebar — main admin navigation. Active item is highlighted based on current_page?. %>
+<% items = [
+     { label: t("menu.dashboard"),  path: admin_root_path,
+       icon: '<path d="M3 12l9-9 9 9M5 10v10h14V10"/>' },
+     { label: t("menu.freights"),   path: admin_root_path,
+       icon: '<path d="M3 7h13v8H3zM16 10h4l1 3v2h-5zM6 19a2 2 0 100-4 2 2 0 000 4zM18 19a2 2 0 100-4 2 2 0 000 4z"/>' },
+     { label: t("menu.clients"),    path: admin_root_path,
+       icon: '<path d="M16 11a4 4 0 10-8 0 4 4 0 008 0zM4 21v-1a6 6 0 0112 0v1"/>' },
+     { label: t("menu.drivers"),    path: admin_root_path,
+       icon: '<path d="M5 18a3 3 0 116 0M13 18a3 3 0 116 0M3 14l2-6h6l2 6M15 14l2-4h3l1 4"/>' },
+     { label: t("menu.reports"),    path: admin_root_path,
+       icon: '<path d="M4 4h12l4 4v12H4zM14 4v6h6"/>' },
+     { label: t("menu.settings"),   path: admin_root_path,
+       icon: '<circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 00-.1-1.2l2-1.6-2-3.4-2.3.9a7 7 0 00-2.1-1.2L14 3h-4l-.5 2.5a7 7 0 00-2.1 1.2l-2.3-.9-2 3.4 2 1.6A7 7 0 005 12c0 .4 0 .8.1 1.2l-2 1.6 2 3.4 2.3-.9a7 7 0 002.1 1.2L10 21h4l.5-2.5a7 7 0 002.1-1.2l2.3.9 2-3.4-2-1.6c.1-.4.1-.8.1-1.2z"/>' }
+   ] %>
+
+<aside class="bg-sidebar text-white w-64 min-h-screen flex flex-col">
+  <div class="px-6 py-5 flex items-center gap-3 border-b border-white/10">
+    <div class="w-10 h-10 rounded-md bg-white/10 flex items-center justify-center">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           class="w-6 h-6"><path d="M3 7h13v8H3zM16 10h4l1 3v2h-5zM6 19a2 2 0 100-4 2 2 0 000 4zM18 19a2 2 0 100-4 2 2 0 000 4z"/></svg>
+    </div>
+    <div class="leading-tight">
+      <div class="font-bold text-sm">Expresso</div>
+      <div class="text-xs text-white/70">Leva e Traz</div>
+    </div>
+  </div>
+
+  <div class="px-6 pt-6 pb-3 text-xs uppercase tracking-wider text-white/50">Painel</div>
+
+  <nav class="flex-1 px-3 space-y-1">
+    <% items.each do |item| %>
+      <% active = current_page?(item[:path]) %>
+      <%= link_to item[:path],
+            class: "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors #{active ? "bg-sidebar-active text-white" : "text-white/80 hover:bg-sidebar-hover hover:text-white"}" do %>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><%== item[:icon] %></svg>
+        <%= item[:label] %>
+      <% end %>
+    <% end %>
+  </nav>
+
+  <div class="px-6 py-4 text-xs text-white/40 border-t border-white/10">
+    v0.1
+  </div>
+</aside>

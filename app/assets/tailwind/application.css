@@ -1,1 +1,73 @@
 @import "tailwindcss";
+
+@theme {
+  /* Brand palette — extracted from the mockup */
+  --color-brand-50:  #eef4ff;
+  --color-brand-100: #d9e6ff;
+  --color-brand-200: #b4caff;
+  --color-brand-300: #85a8ff;
+  --color-brand-400: #5a87f7;
+  --color-brand-500: #3a66e0;  /* primary button */
+  --color-brand-600: #2a4fc8;
+  --color-brand-700: #1f3da3;
+  --color-brand-800: #142a78;
+  --color-brand-900: #0b1f5c;
+  --color-brand-950: #061539;
+
+  /* Dark sidebar — deep navy from the mockup */
+  --color-sidebar:        #0b2447;
+  --color-sidebar-hover:  #143a73;
+  --color-sidebar-active: #1d4ed8;
+
+  /* App surfaces */
+  --color-surface:        #f5f7fb;
+  --color-surface-muted:  #eef1f7;
+
+  /* Status colors (used by status_badge partial) */
+  --color-status-pending:    #f59e0b;
+  --color-status-in-transit: #3b82f6;
+  --color-status-delivered:  #10b981;
+  --color-status-cancelled:  #ef4444;
+}
+
+/* Component classes — base styles repeated rather than @apply'd since
+   Tailwind v4 cannot @apply custom utilities. */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md
+           text-sm font-medium transition-colors disabled:opacity-50
+           disabled:cursor-not-allowed focus:outline-none focus:ring-2
+           focus:ring-offset-2 focus:ring-brand-500;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md
+           text-sm font-medium transition-colors bg-brand-500 text-white
+           hover:bg-brand-600 focus:outline-none focus:ring-2 focus:ring-offset-2
+           focus:ring-brand-500;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md
+           text-sm font-medium transition-colors bg-white text-gray-700 border
+           border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2
+           focus:ring-offset-2 focus:ring-brand-500;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md
+           text-sm font-medium transition-colors bg-red-600 text-white
+           hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2
+           focus:ring-red-500;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  }
+
+  .form-field {
+    @apply block w-full rounded-md border-gray-300 shadow-sm
+           focus:border-brand-500 focus:ring-brand-500 sm:text-sm;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+}

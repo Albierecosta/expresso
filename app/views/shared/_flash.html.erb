@@ -1,0 +1,17 @@
+<%# Flash messages — one banner per flash entry.
+    Maps Devise's :notice/:alert + custom :success/:error to colors. %>
+<% flash_styles = {
+     notice:  "bg-emerald-50 border-emerald-300 text-emerald-800",
+     success: "bg-emerald-50 border-emerald-300 text-emerald-800",
+     alert:   "bg-amber-50 border-amber-300 text-amber-800",
+     warning: "bg-amber-50 border-amber-300 text-amber-800",
+     error:   "bg-red-50 border-red-300 text-red-800"
+   }.with_indifferent_access %>
+
+<% flash.each do |key, message| %>
+  <% next if message.blank? %>
+  <div class="border rounded-md px-4 py-3 mb-3 text-sm <%= flash_styles[key] || "bg-gray-50 border-gray-300 text-gray-800" %>"
+       role="alert">
+    <%= message %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<%# Status badge — receives an Enumerize attribute value and renders a colored pill.
+     Usage: render "shared/status_badge", value: freight.status %>
+<% colors = {
+     "pending"    => "bg-amber-100 text-amber-800",
+     "in_transit" => "bg-blue-100 text-blue-800",
+     "delivered"  => "bg-emerald-100 text-emerald-800",
+     "cancelled"  => "bg-red-100 text-red-800",
+     "admin"      => "bg-purple-100 text-purple-800",
+     "operator"   => "bg-gray-100 text-gray-800",
+     "driver"     => "bg-blue-100 text-blue-800"
+   } %>
+<% key = value.respond_to?(:value) ? value.value.to_s : value.to_s %>
+<% label = value.respond_to?(:text) ? value.text : key.humanize %>
+<span class="badge <%= colors[key] || "bg-gray-100 text-gray-800" %>">
+  <%= label %>
+</span>
