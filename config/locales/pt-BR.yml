@@ -67,6 +67,15 @@ pt-BR:
       cancelled: "Cancelados"
     see_all: "Ver todos"
 
+  reports:
+    monthly_title: "Relatório Mensal"
+    monthly_subtitle: "Fretes entregues no mês, agrupados por cliente."
+    period: "Período"
+    download_pdf: "Gerar PDF"
+    total: "TOTAL"
+    empty_title: "Nenhum frete entregue no período"
+    empty_subtitle: "Ajuste os filtros ou aguarde uma confirmação de recebimento."
+
   public_flow:
     step: "Passo %{n} de 4"
     data:

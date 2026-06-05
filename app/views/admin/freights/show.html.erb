@@ -51,7 +51,11 @@
 
 <% if @freight.delivery&.delivered_at %>
   <div class="card mt-6">
-    <h2 class="font-semibold text-gray-900 mb-4">Comprovante de Entrega</h2>
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="font-semibold text-gray-900">Comprovante de Entrega</h2>
+      <%= link_to "Baixar PDF", receipt_admin_freight_path(@freight),
+            target: "_blank", rel: "noopener", class: "btn-secondary" %>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
       <div>
         <div class="text-xs uppercase tracking-wider text-gray-500 mb-2">

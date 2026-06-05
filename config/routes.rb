@@ -4,7 +4,16 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "home#show"
     resources :freights do
-      member { get :print }
+      member do
+        get :print
+        get :receipt
+      end
+    end
+    resources :reports, only: :index do
+      collection do
+        get :monthly
+        get :monthly_pdf
+      end
     end
   end
 

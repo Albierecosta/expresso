@@ -1,6 +1,6 @@
 module Admin
   class FreightsController < BaseController
-    before_action :set_freight, only: %i[show edit update destroy print]
+    before_action :set_freight, only: %i[show edit update destroy print receipt]
 
     def index
       scope    = policy_scope(Freight).includes(:client, :recipient, :driver, :address)
@@ -58,6 +58,15 @@ module Admin
     def print
       authorize @freight, :show?
       render layout: "print"
+    end
+
+    def receipt
+      authorize @freight, :show?
+      pdf = ComprovantePdf.new(@freight).render
+      send_data pdf,
+                filename: "comprovante-#{@freight.code}.pdf",
+                type: "application/pdf",
+                disposition: "inline"
     end
 
     private
