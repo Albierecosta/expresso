@@ -4,12 +4,13 @@ Sistema web de gestão de fretes com comprovação digital (QR Code + foto + ass
 
 ## Stack
 
-- **Ruby** 3.3.x
-- **Rails** 7.2 (modo full-stack, sem API mode)
-- **PostgreSQL** 16
+- **Ruby** 3.3.0
+- **Rails** 8.0.5 (modo full-stack, sem API mode)
+- **PostgreSQL** 17
 - **Hotwire** (Turbo + Stimulus) — SPA feel sem JS framework
-- **TailwindCSS** — UI responsiva (admin web + telas mobile do destinatário)
+- **TailwindCSS** v4 — UI responsiva (admin web + telas mobile do destinatário)
 - **importmap-rails** — sem Node/Webpack
+- **Solid Queue / Cache / Cable** — backends padrão do Rails 8, sem Redis
 
 ### Gems principais
 
