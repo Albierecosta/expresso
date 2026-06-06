@@ -30,4 +30,8 @@ class User < ApplicationRecord
             scope: true
 
   validates :name, presence: true
+
+  def self.ransackable_attributes(_auth = nil)
+    %w[name email role created_at]
+  end
 end

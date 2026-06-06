@@ -1,0 +1,20 @@
+<%= render "shared/page_header", title: "Editar empresa" %>
+
+<%= simple_form_for @company, url: admin_company_path, method: :patch,
+      html: { class: "card space-y-6", multipart: true } do |f| %>
+  <%= render "shared/form_errors", record: @company %>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <%= f.input :name,       input_html: { class: "form-field" } %>
+    <%= f.input :legal_name, input_html: { class: "form-field" } %>
+    <%= f.input :cnpj,       input_html: { class: "form-field" } %>
+    <%= f.input :email,      input_html: { class: "form-field" } %>
+    <%= f.input :phone,      input_html: { class: "form-field" } %>
+    <%= f.input :logo, as: :file, hint: (image_tag(url_for(@company.logo), alt: "Logo atual", class: "max-h-16 mt-2") if @company.logo.attached?) %>
+  </div>
+
+  <div class="flex items-center justify-end gap-2 pt-4 border-t border-gray-100">
+    <%= link_to t("actions.cancel"), admin_company_path, class: "btn-secondary" %>
+    <%= f.submit t("actions.save"), class: "btn-primary" %>
+  </div>
+<% end %>

@@ -30,7 +30,15 @@ class Recipient < ApplicationRecord
   include Auditable
 
   belongs_to :client
-  # has_many :freights — added in Phase 3
+  has_many :freights, dependent: :restrict_with_error
 
   validates :name, presence: true
+
+  def self.ransackable_attributes(_auth = nil)
+    %w[name document email phone created_at]
+  end
+
+  def self.ransackable_associations(_auth = nil)
+    %w[client]
+  end
 end

@@ -1,0 +1,20 @@
+<%= simple_form_for [ :admin, driver ], as: :user, html: { class: "card space-y-6" } do |f| %>
+  <%= render "shared/form_errors", record: driver %>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <%= f.input :name,  input_html: { class: "form-field" } %>
+    <%= f.input :email, input_html: { class: "form-field" } %>
+    <%= f.input :password,
+          required: driver.new_record?,
+          hint: (driver.persisted? ? "Deixe em branco para manter a senha atual." : nil),
+          input_html: { class: "form-field" } %>
+    <%= f.input :password_confirmation,
+          required: driver.new_record?,
+          input_html: { class: "form-field" } %>
+  </div>
+
+  <div class="flex items-center justify-end gap-2 pt-4 border-t border-gray-100">
+    <%= link_to t("actions.cancel"), admin_drivers_path, class: "btn-secondary" %>
+    <%= f.submit t("actions.save"), class: "btn-primary" %>
+  </div>
+<% end %>

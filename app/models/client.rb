@@ -27,7 +27,11 @@ class Client < ApplicationRecord
   include Auditable
 
   has_many :recipients, dependent: :destroy
-  # has_many :freights — added in Phase 3
+  has_many :freights, dependent: :restrict_with_error
 
   validates :name, presence: true
+
+  def self.ransackable_attributes(_auth = nil)
+    %w[name document email phone created_at]
+  end
 end

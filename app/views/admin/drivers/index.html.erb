@@ -1,0 +1,25 @@
+<%= render "shared/page_header", title: t("menu.drivers") do %>
+  <%= link_to t("actions.new"), new_admin_driver_path, class: "btn-primary" %>
+<% end %>
+
+<% if @drivers.any? %>
+  <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <table class="w-full">
+      <thead class="bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-500">
+        <tr>
+          <th class="px-4 py-3"><%= User.human_attribute_name(:name) %></th>
+          <th class="px-4 py-3"><%= User.human_attribute_name(:email) %></th>
+          <th class="px-4 py-3"><%= Freight.human_attribute_name(:created_at) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "row", collection: @drivers, as: :driver %>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-4"><%== pagy_nav(@pagy) %></div>
+<% else %>
+  <%= render "shared/empty_state",
+        title: "Nenhum motorista cadastrado",
+        action: link_to(t("actions.new"), new_admin_driver_path, class: "btn-primary") %>
+<% end %>

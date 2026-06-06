@@ -1,0 +1,27 @@
+<%= render "shared/page_header", title: Client.model_name.human(count: 2) do %>
+  <%= link_to t("actions.new"), new_admin_client_path, class: "btn-primary" %>
+<% end %>
+
+<% if @clients.any? %>
+  <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <table class="w-full">
+      <thead class="bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-500">
+        <tr>
+          <th class="px-4 py-3"><%= Client.human_attribute_name(:name) %></th>
+          <th class="px-4 py-3"><%= Client.human_attribute_name(:document) %></th>
+          <th class="px-4 py-3"><%= Client.human_attribute_name(:email) %></th>
+          <th class="px-4 py-3"><%= Client.human_attribute_name(:phone) %></th>
+          <th class="px-4 py-3"><%= Address.human_attribute_name(:city) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "row", collection: @clients, as: :client %>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-4"><%== pagy_nav(@pagy) %></div>
+<% else %>
+  <%= render "shared/empty_state",
+        title: "Nenhum cliente cadastrado",
+        action: link_to(t("actions.new"), new_admin_client_path, class: "btn-primary") %>
+<% end %>

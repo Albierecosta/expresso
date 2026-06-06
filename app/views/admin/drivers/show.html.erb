@@ -1,0 +1,18 @@
+<%= render "shared/page_header", title: @driver.name, subtitle: t("menu.drivers") do %>
+  <%= link_to t("actions.edit"), edit_admin_driver_path(@driver), class: "btn-secondary" %>
+  <%= button_to t("actions.destroy"), admin_driver_path(@driver),
+        method: :delete,
+        form: { data: { turbo_confirm: t("actions.confirm") + "?" } },
+        class: "btn-danger" %>
+<% end %>
+
+<div class="card space-y-3 text-sm">
+  <div>
+    <div class="text-xs uppercase tracking-wider text-gray-500"><%= User.human_attribute_name(:email) %></div>
+    <div class="mt-1"><%= @driver.email %></div>
+  </div>
+  <div>
+    <div class="text-xs uppercase tracking-wider text-gray-500"><%= User.human_attribute_name(:role) %></div>
+    <div class="mt-1"><%= render "shared/status_badge", value: @driver.role %></div>
+  </div>
+</div>

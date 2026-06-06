@@ -1,0 +1,7 @@
+<tr class="border-b border-gray-100 hover:bg-gray-50">
+  <td class="px-4 py-3">
+    <%= link_to driver.name, admin_driver_path(driver), class: "text-sm hover:text-brand-600" %>
+  </td>
+  <td class="px-4 py-3 text-sm text-gray-500"><%= driver.email %></td>
+  <td class="px-4 py-3 text-sm text-gray-500"><%= l(driver.created_at.to_date, format: :short) %></td>
+</tr>

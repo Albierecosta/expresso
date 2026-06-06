@@ -1,0 +1,9 @@
+<tr class="border-b border-gray-100 hover:bg-gray-50">
+  <td class="px-4 py-3">
+    <%= link_to client.name, admin_client_path(client), class: "text-sm hover:text-brand-600" %>
+  </td>
+  <td class="px-4 py-3 text-sm text-gray-500"><%= client.document %></td>
+  <td class="px-4 py-3 text-sm text-gray-500"><%= client.email %></td>
+  <td class="px-4 py-3 text-sm text-gray-500"><%= client.phone %></td>
+  <td class="px-4 py-3 text-sm text-gray-500"><%= client.address&.city %></td>
+</tr>

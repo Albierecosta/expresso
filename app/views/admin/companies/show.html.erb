@@ -1,0 +1,30 @@
+<%= render "shared/page_header", title: t("menu.settings"), subtitle: Company.model_name.human do %>
+  <%= link_to t("actions.edit"), edit_admin_company_path, class: "btn-primary" %>
+<% end %>
+
+<div class="card space-y-4 text-sm">
+  <% if @company.logo.attached? %>
+    <%= image_tag url_for(@company.logo), alt: "Logo", class: "max-h-24" %>
+  <% end %>
+
+  <div>
+    <div class="text-xs uppercase tracking-wider text-gray-500"><%= Company.human_attribute_name(:name) %></div>
+    <div class="mt-1 text-lg font-medium"><%= @company.name %></div>
+  </div>
+  <div>
+    <div class="text-xs uppercase tracking-wider text-gray-500"><%= Company.human_attribute_name(:legal_name) %></div>
+    <div class="mt-1"><%= @company.legal_name.presence || "—" %></div>
+  </div>
+  <div>
+    <div class="text-xs uppercase tracking-wider text-gray-500"><%= Company.human_attribute_name(:cnpj) %></div>
+    <div class="mt-1 font-mono"><%= @company.cnpj.presence || "—" %></div>
+  </div>
+  <div>
+    <div class="text-xs uppercase tracking-wider text-gray-500"><%= Company.human_attribute_name(:email) %></div>
+    <div class="mt-1"><%= @company.email.presence || "—" %></div>
+  </div>
+  <div>
+    <div class="text-xs uppercase tracking-wider text-gray-500"><%= Company.human_attribute_name(:phone) %></div>
+    <div class="mt-1"><%= @company.phone.presence || "—" %></div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<%= render "shared/page_header", title: @client.name, subtitle: @client.document do %>
+  <%= link_to t("actions.edit"), edit_admin_client_path(@client), class: "btn-secondary" %>
+  <%= button_to t("actions.destroy"), admin_client_path(@client),
+        method: :delete,
+        form: { data: { turbo_confirm: t("actions.confirm") + "?" } },
+        class: "btn-danger" %>
+<% end %>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+  <div class="card lg:col-span-2 space-y-3 text-sm">
+    <div>
+      <div class="text-xs uppercase tracking-wider text-gray-500"><%= Client.human_attribute_name(:email) %></div>
+      <div class="mt-1"><%= @client.email.presence || "—" %></div>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-wider text-gray-500"><%= Client.human_attribute_name(:phone) %></div>
+      <div class="mt-1"><%= @client.phone.presence || "—" %></div>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-wider text-gray-500"><%= Address.model_name.human %></div>
+      <div class="mt-1"><%= @client.address %></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="text-xs uppercase tracking-wider text-gray-500 mb-2">
+      <%= Recipient.model_name.human(count: 2) %>
+    </div>
+    <div class="text-2xl font-semibold"><%= @client.recipients.count %></div>
+    <%= link_to "Ver destinatários", admin_recipients_path(q: { client_id_eq: @client.id }),
+          class: "text-sm text-brand-600 hover:underline mt-2 block" %>
+  </div>
+</div>
+
+<% if @freights&.any? %>
+  <div class="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+      <h2 class="font-semibold text-gray-900">Últimos fretes</h2>
+    </div>
+    <table class="w-full">
+      <tbody>
+        <%= render partial: "admin/freights/row", collection: @freights, as: :freight %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
