@@ -52,6 +52,7 @@ gem "ransack"                 # search/filter
 gem "simple_form"             # DRY forms
 gem "rails-i18n"              # base pt-BR translations for Rails
 gem "dotenv-rails"            # load .env in dev/test
+gem "rack-attack"             # rate limit + throttle
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -78,4 +79,5 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "bullet" # surfaces N+1 queries in dev
 end

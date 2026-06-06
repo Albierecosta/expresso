@@ -38,6 +38,8 @@ module Expresso
     config.i18n.available_locales = [ :"pt-BR" ]
     config.i18n.load_path += Dir[Rails.root.join("config/locales/**/*.{rb,yml}")]
 
+    config.middleware.use Rack::Attack
+
     # Don't generate system test files.
     config.generators.system_tests = nil
 

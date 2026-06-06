@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title><%= [ content_for(:title), t("app.name") ].compact.join(" · ") %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="min-h-screen bg-sidebar text-gray-900 antialiased flex items-center justify-center px-4">
+    <div class="w-full max-w-md">
+      <div class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 mb-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" class="w-9 h-9 text-white">
+            <path d="M3 7h13v8H3zM16 10h4l1 3v2h-5zM6 19a2 2 0 100-4 2 2 0 000 4zM18 19a2 2 0 100-4 2 2 0 000 4z"/>
+          </svg>
+        </div>
+        <h1 class="text-2xl font-bold text-white"><%= t("app.name") %></h1>
+        <p class="text-sm text-white/60 mt-1"><%= t("app.tagline") %></p>
+      </div>
+
+      <%= render "shared/flash" %>
+      <%= yield %>
+
+      <p class="text-center text-xs text-white/40 mt-6">
+        © <%= Date.current.year %> <%= t("app.name") %>
+      </p>
+    </div>
+  </body>
+</html>

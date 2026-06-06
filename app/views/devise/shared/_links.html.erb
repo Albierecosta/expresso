@@ -1,0 +1,13 @@
+<% if controller_name != "sessions" %>
+  <div class="mt-6 text-center">
+    <%= link_to "Voltar para o login", new_session_path(resource_name),
+          class: "text-sm text-brand-600 hover:underline" %>
+  </div>
+<% end %>
+
+<% if devise_mapping.recoverable? && controller_name != "passwords" && controller_name != "registrations" %>
+  <div class="mt-6 text-center">
+    <%= link_to "Esqueci minha senha", new_password_path(resource_name),
+          class: "text-sm text-brand-600 hover:underline" %>
+  </div>
+<% end %>

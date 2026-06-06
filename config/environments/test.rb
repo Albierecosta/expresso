@@ -50,4 +50,8 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # Disable Rack::Attack in tests — request specs sign in repeatedly and would
+  # blow past the login throttle.
+  config.after_initialize { Rack::Attack.enabled = false }
 end
