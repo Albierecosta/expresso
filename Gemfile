@@ -47,7 +47,7 @@ gem "enumerize"               # enums with I18n, scopes, predicates
 gem "rqrcode"                 # QR code generation (SVG/PNG)
 gem "prawn"                   # PDF generation
 gem "prawn-table"             # tables in Prawn PDFs
-gem "pagy", "~> 9.0"          # pagination (locked to 9.x — 43.x is a rewrite)
+gem "pagy", "~> 43.5"         # pagination (locked to 9.x — 43.x is a rewrite)
 gem "ransack"                 # search/filter
 gem "simple_form"             # DRY forms
 gem "rails-i18n"              # base pt-BR translations for Rails
